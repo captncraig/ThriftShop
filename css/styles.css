@@ -1,23 +1,10 @@
-html, body {
-    margin-top: 0;
-    margin-left: 0;
-    font-family: Helvetica, Arial, sans-serif;
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
+#sidebar:focus,
+#main:focus {
+    border: none !important;
+    outline: none;
 }
 
-a, a:hover {
-    cursor: pointer;
-}
-
-#container {
-    height: 100%;
-    width: 100%;
-}
-
-#sidebar {
+.sidebar {
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -34,37 +21,20 @@ a, a:hover {
     overflow-x: hidden;
 }
 
-#sidebar-toggle {
-    position: fixed;
-    bottom: 0;
-    left: 350px;
-    opacity: 0.5;
-    z-index: 100;
-    cursor: pointer;
-    height: 24px;
-    width: 16px;
-    background: #ccc;
-    border-top-right-radius: 5px;
-    padding-top: 6px;
-    padding-left: 3px;
+.main {
+    background: #fff;
+    float: left;
+    padding-bottom: 20px;
+    margin-left: 350px;
+    min-height: 100%;
 }
 
-#sidebar:focus,
-#main:focus {
-    border: none !important;
-    outline: none;
+.servicesHeader{
+	font-size:150%;
+	line-height: 20px;
 }
 
-/* new clearfix */
-.clearfix:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-}
-
-* html .clearfix {
-    zoom: 1;
+.serviceLink{
+	font-size:200%;
+	margin-top:20px;
 }

@@ -1,34 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
 <head>
     <meta charset="utf-8"/>
     <title>Thrift Shop</title>
-    <link rel="stylesheet" type="text/css" href="css/custom-theme/jquery-ui-1.9.2.custom.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap-modal.css"/>
-    <link rel="stylesheet" type="text/css" href="css/jquery.jscrollpane.css"/>
     <link rel="stylesheet" type="text/css" href="css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="css/keyvalueeditor.css"/>
 </head>
 
-<body>
-<div id="container" class="clearfix">
-	<div id="sidebar-toggle">
-		<img src="img/tri_arrow_left.png"/>
-	</div>
-	<div id="sidebar">
-		sidebar.
+<body ng-controller="ThriftShopCtrl">
+
+
+<div class='sidebar'>
+	<h3>ThriftShop</h3>
+	<div class='servicesHeader'>Services  <a href="#"><img src="img/folder_plus.png" style="width:20px; height:20px; position:relative; top:-3px; left:13px;"/></a></div>
+	<div class='serviceLink' ng-repeat='service in services'>
+		<a ng-click='setSelected(service)'>{{service.name}}</a>
 	</div>
 </div>
 
 
+<div class='main'>
+	{{currentService.name}}
+</div>
+
+
+
+
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/underscore-min.js"></script>
-<script type="text/javascript" src="js/jsonlint.js"></script>
-
-
-
-<script type="text/javascript" src="js/ui.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 
 </body>
 </html>
