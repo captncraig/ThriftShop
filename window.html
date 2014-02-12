@@ -21,7 +21,26 @@
 
 
 <div class='main'>
-	{{currentService.name}}
+	<h2>{{currentService.name}}</h2>
+	{{currentService.doc}}
+	<h3>typedefs</h3>
+	<div ng-repeat='typedef in currentService.typedefs'>
+		<span class='typedef-name'>{{typedef.name}}</span> - 
+		<span class='typedef-type'>{{typedef.type}}</span>
+	</div>
+	<h3>enums</h3>
+	<div ng-repeat='enum in currentService.enums'>
+		<span class='enum-name'>{{enum.name}}</span>
+	</div>
+	<h3>structs</h3>
+	<div ng-repeat='struct in currentService.structs'>
+		<span class='struct-name'>{{struct.name}}</span>
+	</div>
+	<h3>services</h3>
+	<div ng-repeat='service in currentService.services'>
+		<span class='service-name'>{{service.name}}</span>
+	</div>
+	
 </div>
 
 
