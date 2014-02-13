@@ -24,21 +24,35 @@
 	<h2>{{currentService.name}}</h2>
 	{{currentService.doc}}
 	<h3>typedefs</h3>
-	<div ng-repeat='typedef in currentService.typedefs'>
-		<span class='typedef-name'>{{typedef.name}}</span> - 
-		<span class='typedef-type'>{{typedef.type}}</span>
+	<div class='typedef' ng-repeat='typedef in currentService.typedefs'>
+		<span class='name'>{{typedef.name}}</span> - 
+		<span>{{typedef.type}}</span><br/>
+		{{typedef.doc}}
 	</div>
 	<h3>enums</h3>
-	<div ng-repeat='enum in currentService.enums'>
-		<span class='enum-name'>{{enum.name}}</span>
+	<div class='enum' ng-repeat='enum in currentService.enums'>
+		<span class='name'>{{enum.name}}</span>
+		<br/>{{enum.doc}}
+		<div class='enumMember' ng-repeat='member in enum.members'>
+			{{member.value}} - <span class='name'>{{member.name}}</span> {{member.doc}}
+		</div>
 	</div>
 	<h3>structs</h3>
-	<div ng-repeat='struct in currentService.structs'>
-		<span class='struct-name'>{{struct.name}}</span>
+	<div class='struct' ng-repeat='struct in currentService.structs'>
+		<span class='name'>{{struct.name}}</span><br/>
+		{{struct.doc}}
+		<div class='field' ng-repeat='field in struct.fields'>
+			{{field.index}} - <span class='name'>{{field.name}}</span>({{field.type}})
+		</div>
+		<hr/>
 	</div>
 	<h3>services</h3>
 	<div ng-repeat='service in currentService.services'>
-		<span class='service-name'>{{service.name}}</span>
+		<span class='name'>{{service.name}}</span><br/>
+		{{service.doc}}
+		<div class='function' ng-repeat='function in service.functions'>
+			{{function.returnType}} <span class='name'>{{function.name}}</span>
+		</div>
 	</div>
 	
 </div>
