@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app ng-csp="">
 <head>
     <meta charset="utf-8"/>
     <title>Thrift Shop</title>
+    <link rel="stylesheet" type="text/css" href="css/angular-csp.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap-modal.css"/>
     <link rel="stylesheet" type="text/css" href="css/styles.css"/>
@@ -21,40 +22,57 @@
 
 
 <div class='main'>
-	<h2>{{currentService.name}}</h2>
-	{{currentService.doc}}
-	<h3>typedefs</h3>
-	<div class='typedef' ng-repeat='typedef in currentService.typedefs'>
-		<span class='name'>{{typedef.name}}</span> - 
-		<span>{{typedef.type}}</span><br/>
-		{{typedef.doc}}
-	</div>
-	<h3>enums</h3>
-	<div class='enum' ng-repeat='enum in currentService.enums'>
-		<span class='name'>{{enum.name}}</span>
-		<br/>{{enum.doc}}
-		<div class='enumMember' ng-repeat='member in enum.members'>
-			{{member.value}} - <span class='name'>{{member.name}}</span> {{member.doc}}
+	<div class='documentation' ng-hide='invocationData'>
+		<div class='programTitle'>{{currentService.name}}</div>
+		{{currentService.doc}}
+		<h3>typedefs</h3>
+		<div class='typedef' ng-repeat='typedef in currentService.typedefs'>
+			<span class='name'>{{typedef.name}}</span> - 
+			<span>{{typedef.type}}</span><br/>
+			{{typedef.doc}}
+		</div>
+		<h3>enums</h3>
+		<div class='enum' ng-repeat='enum in currentService.enums'>
+			<span class='name'>{{enum.name}}</span>
+			<br/>{{enum.doc}}
+			<div class='enumMember' ng-repeat='member in enum.members'>
+				{{member.value}} - <span class='name'>{{member.name}}</span> {{member.doc}}
+			</div>
+		</div>
+		<h3>structs</h3>
+		<div class='struct' ng-repeat='struct in currentService.structs'>
+			<span class='name'>{{struct.name}}</span><br/>
+			{{struct.doc}}
+			<div class='field' ng-repeat='field in struct.fields'>
+				{{field.index}} - <span class='name'>{{field.name}}</span>({{field.type}})
+			</div>
+			<hr/>
+		</div>
+		<h3>services</h3>
+		<div ng-repeat='service in currentService.services'>
+			<span class='name'>{{service.name}}</span><br/>
+			{{service.doc}}
+			<div class='function' ng-repeat='function in service.functions'>
+				{{function.returnType}} <a href='#' ng-click='test_function(function,service)'><span class='name'>{{function.name}}</span></a>(
+				<span ng-repeat='arg in function.arguments'> {{arg.index}}: {{arg.type}} {{arg.name}},</span>)
+			</div>
 		</div>
 	</div>
-	<h3>structs</h3>
-	<div class='struct' ng-repeat='struct in currentService.structs'>
-		<span class='name'>{{struct.name}}</span><br/>
-		{{struct.doc}}
-		<div class='field' ng-repeat='field in struct.fields'>
-			{{field.index}} - <span class='name'>{{field.name}}</span>({{field.type}})
+	<div class='tester' ng-show='invocationData'>
+		<div class='programTitle'><a href="#" ng-click='invocationData=null'><img src='img/Back_Arrow.png' height="42" width="42"></img> {{currentService.name}}</a></div>
+		<div class='functionTitle'>{{invocationData.service.name}}.{{invocationData.func.name}}
+			(<span ng-repeat='arg in invocationData.func.arguments'>{{arg.type}} {{arg.name}},</span>)
+			
 		</div>
-		<hr/>
-	</div>
-	<h3>services</h3>
-	<div ng-repeat='service in currentService.services'>
-		<span class='name'>{{service.name}}</span><br/>
-		{{service.doc}}
-		<div class='function' ng-repeat='function in service.functions'>
-			{{function.returnType}} <span class='name'>{{function.name}}</span>
+		<div class='arguments'>
+			<h3>Arguments</h3>
+			<div ng-hide='invocationData.arguments.length'>No Arguments</div>
+			<div class='argument' ng-repeat='arg in invocationData.arguments'>
+				{{arg.meta.index}}: {{arg.meta.type}} {{arg.meta.name}}
+			</div>
 		</div>
+		
 	</div>
-	
 </div>
 
 
