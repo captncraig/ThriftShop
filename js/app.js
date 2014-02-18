@@ -11,8 +11,6 @@
 		$scope.currentService = service;
 	}
 	
-	
-	
 	$scope.test_function = function(func,service){
 		$scope.invocationData = {func: func, service: service, program: $scope.currentService, arguments:makeArgumentsFromFunc(func)};
 	}
@@ -25,4 +23,7 @@
 		return args;
 	}
  
+	$scope.invoke = function(){
+		InvokeThrift($scope.invocationData);
+	}
  }

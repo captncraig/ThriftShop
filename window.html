@@ -5,7 +5,6 @@
     <title>Thrift Shop</title>
     <link rel="stylesheet" type="text/css" href="css/angular-csp.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-modal.css"/>
     <link rel="stylesheet" type="text/css" href="css/styles.css"/>
 </head>
 
@@ -68,8 +67,9 @@
 			<h3>Arguments</h3>
 			<div ng-hide='invocationData.arguments.length'>No Arguments</div>
 			<div class='argument' ng-repeat='arg in invocationData.arguments'>
-				{{arg.meta.index}}: {{arg.meta.type}} {{arg.meta.name}}
+				{{arg.meta.index}}: {{arg.meta.type}} {{arg.meta.name}} <input type='text' class='input' ng-model='arg.value'></input>
 			</div>
+			<button type="submit" class="btn btn-primary invokeButton" ng-click='invoke()'>Invoke</button>
 		</div>
 		
 	</div>
@@ -81,6 +81,8 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/angular.min.js"></script>
 <script type="text/javascript" src="js/underscore-min.js"></script>
+<script type="text/javascript" src="js/thrift.js"></script>
+<script type="text/javascript" src="js/dynamicThrift.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 
 </body>
