@@ -1,13 +1,17 @@
 function InvokeThrift(invocation){
-	var transport = new Thrift.Transport("http://localhost:9001");
+	var transport = new Thrift.Transport("http://localhost:8080/a");
     var protocol  = new Thrift.Protocol(transport);
 	protocol.writeMessageBegin(invocation.func.name, Thrift.MessageType.CALL, 0);
+	
 	//beginning of arguments struct
 	protocol.writeStructBegin();
+	
 	writeArguments(invocation,protocol);
+	
 	//end of arguments struct
 	protocol.writeFieldStop();
 	protocol.writeStructEnd();
+	
 	protocol.writeMessageEnd();
 	transport.flush();
 }
