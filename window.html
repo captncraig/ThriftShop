@@ -21,7 +21,7 @@
 
 
 <div class='main'>
-	<div class='documentation' ng-hide='invocationData'>
+	<div class='documentation' ng-hide='currentFunction'>
 		<div class='programTitle'>{{currentService.name}}</div>
 		{{currentService.doc}}
 		<h3>services</h3>
@@ -58,21 +58,21 @@
 		</div>
 		
 	</div>
-	<div class='tester' ng-show='invocationData'>
-		<div class='programTitle'><a href="#" ng-click='invocationData=null'><img src='img/Back_Arrow.png' height="42" width="42"></img> {{currentService.name}}</a></div>
-		<div class='functionTitle'>{{invocationData.service.name}}.{{invocationData.func.name}}
-			(<span ng-repeat='arg in invocationData.func.arguments'>{{arg.type}} {{arg.name}},</span>)
-			
+	<div class='tester' ng-show="currentFunction">
+		<div class='programTitle'><a href="#" ng-click='currentFunction=null'><img src='img/Back_Arrow.png' height="42" width="42"></img> {{currentService.name}}</a></div>
+		<div class='functionTitle'>{{currentService.name}}.{{currentFunction.name}}
+			(<span ng-repeat='arg in currentFunction.arguments'>{{arg.type}} {{arg.name}},</span>)
 		</div>
 		<div class='arguments'>
-			<h3>Arguments</h3>
-			<div ng-hide='invocationData.arguments.length'>No Arguments</div>
-			<div class='argument' ng-repeat='arg in invocationData.arguments'>
-				{{arg.meta.index}}: {{arg.meta.type}} {{arg.meta.name}} <input type='text' class='input' ng-model='arg.value'></input>
+			Arguments:
+			<div ng-hide='currentFunction.arguments.length'>
+				No arguments
 			</div>
-			<button type="submit" class="btn btn-primary invokeButton" ng-click='invoke()'>Invoke</button>
+			<div id='argWrapper'>
+			
+			</div>
 		</div>
-		
+		<button type="submit" class="btn btn-primary invokeButton" ng-click='invoke()'>Invoke</button>
 	</div>
 </div>
 
